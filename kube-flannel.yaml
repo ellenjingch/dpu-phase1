@@ -105,7 +105,7 @@ metadata:
 data:
   cni-conf.json: |
     {
-      "name": "cbr0",
+      "name": "flannel-conf",
       "cniVersion": "0.3.1",
       "plugins": [
         {

@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: demoappv12
+spec:
+  clusterIP: None
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: demoappv12
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demoappv12
+spec:
+        #  replicas: 2
+  selector:
+    matchLabels:
+      app: demoappv12
+  template:
+    metadata:
+      labels:
+        app: demoappv12
+      annotations:
+        k8s.v1.cni.cncf.io/networks: macvlan-conf
+    spec:
+      containers:
+      - name: demoappv12
+        image: ikubernetes/demoapp:v1.2
+        ports:
+        - containerPort: 80
