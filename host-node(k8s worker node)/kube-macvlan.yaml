@@ -11,8 +11,8 @@ spec:
       "ipam": {
         "type": "host-local",
         "subnet": "192.168.126.0/24",
-        "rangeStart": "192.168.126.200",
-        "rangeEnd": "192.168.126.216",
+        "rangeStart": "192.168.126.231",
+        "rangeEnd": "192.168.126.232",
         "routes": [
           { "dst": "0.0.0.0/0" }
         ],
