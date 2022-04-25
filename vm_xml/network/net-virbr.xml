@@ -1,0 +1,19 @@
+<network connections='2'>
+  <name>net-virbr</name>
+  <uuid>cf92b88d-98fa-4e0e-863b-3a404f122101</uuid>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='virbr2' stp='off' delay='0'/>
+  <mac address='52:54:00:0b:73:51'/>
+  <domain name='net-virbr'/>
+  <ip address='192.168.126.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='192.168.126.128' end='192.168.126.254'/>
+      <host mac='52:54:00:05:7a:40' name='ubuntu20.04-jingh-dpu' ip='192.168.126.133'/>
+      <host mac='52:54:00:e2:18:70' name='ubuntu20.04-jingh-host' ip='192.168.126.130'/>
+    </dhcp>
+  </ip>
+</network>
