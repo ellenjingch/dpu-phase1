@@ -18,10 +18,5 @@ Step5: on dpu-node
     Step5.1: deploy envoy container as d8f3e29e5af0
        $ sudo docker build -t ellendocker/envoy_debug:v1.6 --rm=true .
        $ sudo docker push ellendocker/envoy_debug:v1.6
-    Step5.2: create 2 docker bridge to connect enp1s0 and enp6s0
-       $ sudo docker network create --driver bridge --subnet 192.168.122.0/24 --ip-range=192.168.122.133/32 --gateway 192.168.122.74 mgtbr
-       $ sudo docker network create --driver bridge --subnet 192.168.126.0/24 --ip-range=192.168.126.233/32 --gateway 192.168.126.133 databr
-    Step5.2: connect container d8f3e29e5af0 to databr and mgtbr
-       $ sudo docker network connect mgtbr d8f3e29e5af0
-       $ sudo docker network connect databr d8f3e29e5af0
-    
+    Step5.2: create 2 docker macvlan enp1s0 and enp6s0, bind to docker container
+       $ sudo docker-compose up -d
