@@ -37,7 +37,7 @@ static_resources:
             - name: default
               domains: ["demoapp.com", "*.demoapp.com"]
               routes:
-              - match: {prefix: "/account"}
+              - match: {prefix: "/service/1"}
                 route:
                   cluster: demoappv11
                   idle_timeout: 15s  # must be disabled for long-lived and streaming requests
@@ -45,7 +45,7 @@ static_resources:
                 route:
                   cluster: demoappv12
                   idle_timeout: 15s  # must be disabled for long-lived and streaming requests
-    - address:
+  - address:
       socket_address:
         address: 0.0.0.0
         port_value: 15001
@@ -79,7 +79,7 @@ static_resources:
               routes:
               - match: {prefix: "/"}
                 route:
-                  cluster: demoappv12
+                  cluster: PassthroughCluster
                   idle_timeout: 15s  # must be disabled for long-lived and streaming requests
     use_original_dst: true
   clusters:

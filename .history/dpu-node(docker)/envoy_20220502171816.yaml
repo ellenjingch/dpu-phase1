@@ -79,7 +79,7 @@ static_resources:
               routes:
               - match: {prefix: "/"}
                 route:
-                  cluster: demoappv12
+                  cluster: PassthroughCluster
                   idle_timeout: 15s  # must be disabled for long-lived and streaming requests
     use_original_dst: true
   clusters:

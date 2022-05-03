@@ -1,0 +1,36 @@
+version: '3'
+
+networks:
+    mgtbr:
+        driver: macvlan
+        driver_opts:
+            parent: enp1s0
+        ipam:
+            config:
+                - subnet: '192.168.122.0/24'
+                  gateway: '192.168.122.1'
+    databr:
+        driver: macvlan
+        driver_opts:
+            parent: enp6s0
+        ipam:
+            config:
+                - subnet: '192.168.126.0/24'
+                  gateway: '192.168.126.1'
+
+services:
+    envoy:
+        networks:
+            mgtbr:
+                ipv4_address: '192.168.122.133'
+            databr:
+                ipv4_address: '192.168.126.233'
+        image: envoyproxy/envoy:v1.22.0
+        container_name: envoy
+        volumes:
+          - ./envoy.yaml:/etc/envoy/envoy.yaml
+        expose:
+          - 80
+          - 9901
+          - 15001
+        #command: ['tail', '-f', '/dev/null']

@@ -1,0 +1,27 @@
+version: '3'
+
+networks:
+    mgtbr:
+        driver: macvlan
+        driver_opts:
+            parent: enp1s0
+        ipam:
+            config:
+                - subnet: '192.168.122.0/24'
+                  gateway: '192.168.122.1'
+    br:
+        driver: bridge
+
+services:
+    envoy:
+        networks:
+            mgtbr:
+                ipv4_address: '192.168.122.133'
+            br:
+        image: ellendocker/envoy_debug:v1.6
+        container_name: envoy
+        ports:
+          - 80:80
+          - 15001:15001
+          - 9901:9901
+        #command: ['tail', '-f', '/dev/null']
